@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<table id="main-table">
+	<thead>
+		<tr>
+			<th>Крестики нолики</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+var mainTable = document.getElementById('main-table');
+console.log(mainTable);
+var finished;
+var winner,result;
+var player = true;
+alert("Ход игрока номер Один!"); 
+
+mainTable.onclick = function(e) {
+		console.log(e.target.tagName);
+		if (e.target.tagName !== 'TD') return;
+		if (player) {
+			e.target.innerHTML= 'X';
+		} else {
+			e.target.innerHTML= 0;
+		}
+		result = checkWin();
+		if (result) {
+			if(player) alert("Выйграл игрок номер Один");
+			else {
+				alert("Выйграл игрок номер два");
+			}
+		}
+		else {
+			player = !player;
+			setTimeout(makeTurn, 100);
+		}
+	}
+
+function makeTurn() {
+	if (player) alert("Ход игрока номер Один!"); 
+	else {
+		alert("Ход игрока Номер Два!");
+	}
+}
+
+function checkWin() {
+	// Горизонтальные ряды
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[1].cells[1].innerHTML) && (mainTable.rows[1].cells[1].innerHTML==mainTable.rows[1].cells[2].innerHTML) && (mainTable.rows[1].cells[2].innerHTML == 'X')  ) {
+			 winner = 1;
+			 return true;
+			}
+	
+	if( (mainTable.rows[2].cells[0].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[2].cells[2].innerHTML) &&(mainTable.rows[2].cells[2].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[3].cells[0].innerHTML == mainTable.rows[3].cells[1].innerHTML) && (mainTable.rows[3].cells[1].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+	// Вертикальные 
+
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[2].cells[0].innerHTML) && (mainTable.rows[2].cells[0].innerHTML==mainTable.rows[3].cells[0].innerHTML) && (mainTable.rows[1].cells[0].innerHTML == 'X')  ) {
+			 winner = 1;
+			 return true;
+			}
+
+	
+	if( (mainTable.rows[1].cells[1].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[1].innerHTML) &&(mainTable.rows[3].cells[1].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[1].cells[2].innerHTML == mainTable.rows[2].cells[2].innerHTML) && (mainTable.rows[2].cells[2].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+	// По диагонали
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[1].cells[2].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[0].innerHTML) &&(mainTable.rows[3].cells[0].innerHTML == 'X') )  {
+			winner = 1
+			return true;
+		}
+
+
+
+	// Для игрока номер два
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[1].cells[1].innerHTML) && (mainTable.rows[1].cells[1].innerHTML==mainTable.rows[1].cells[2].innerHTML) && (mainTable.rows[1].cells[2].innerHTML == '0')  ) {
+			 winner = 1;
+			 return true;
+			}
+
+	
+	if( (mainTable.rows[2].cells[0].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[2].cells[2].innerHTML) &&(mainTable.rows[2].cells[2].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[3].cells[0].innerHTML == mainTable.rows[3].cells[1].innerHTML) && (mainTable.rows[3].cells[1].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+
+	// Вертикальные 
+
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[2].cells[0].innerHTML) && (mainTable.rows[2].cells[0].innerHTML==mainTable.rows[3].cells[0].innerHTML) && (mainTable.rows[1].cells[0].innerHTML == '0')  ) {
+			 winner = 1;
+			 return true;
+			}
+
+	
+	if( (mainTable.rows[1].cells[1].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[1].innerHTML) &&(mainTable.rows[3].cells[1].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[1].cells[2].innerHTML == mainTable.rows[2].cells[2].innerHTML) && (mainTable.rows[2].cells[2].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+	// По диагонали
+	if( (mainTable.rows[1].cells[0].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[2].innerHTML) &&(mainTable.rows[3].cells[2].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+
+	if( (mainTable.rows[1].cells[2].innerHTML == mainTable.rows[2].cells[1].innerHTML) && (mainTable.rows[2].cells[1].innerHTML==mainTable.rows[3].cells[0].innerHTML) &&(mainTable.rows[3].cells[0].innerHTML == '0') )  {
+			winner = 1
+			return true;
+		}
+
+
+
+	
+
+	return false;
+
+}
+
+	
+</script>
+
+<style type="text/css">
+	table, tr,td {
+		border: 1px solid;
+		text-align: center;
+		padding: 0 auto;
+	}
+	td {
+		width: 100px;
+		height: 100px;
+		font-size: 50px;
+	}
+</style>
+
+</body>
+</html>
